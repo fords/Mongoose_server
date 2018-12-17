@@ -13,7 +13,7 @@ const websiteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  post: {
+  blogpost: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Blogpost',
     required: true
