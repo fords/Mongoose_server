@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
   companyName: {
     type: String,
-    required: true
+    required: false
   },
   email: {
     type: String,
@@ -14,10 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
   website: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Website',
-    required: true
+    required: false
   },
   token: String
 }, {
