@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const blogpostSchema = new mongoose.Schema({
   time: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: false
   },
   title: {
     type: String,
