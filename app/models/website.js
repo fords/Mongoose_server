@@ -13,6 +13,7 @@ const websiteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
   blogpost: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Blogpost',

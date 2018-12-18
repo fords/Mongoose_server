@@ -7,8 +7,10 @@ const cors = require('cors')
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
+
 const websiteRoutes = require('./app/routes/website_routes')
 const blogpostRoutes = require('./app/routes/blogpost_routes')
+
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
 const db = require('./config/db')
