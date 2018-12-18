@@ -28,4 +28,4 @@ const blogpostSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Blogpost', blogpostSchema)
-// comments and likes future
+// comments and likes --> future

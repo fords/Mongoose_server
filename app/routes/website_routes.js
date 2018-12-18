@@ -85,7 +85,7 @@ router.patch('/websites/:id', requireToken, (req, res) => {
     .then(website => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
-      requireOwnership(req, website)
+      // requireOwnership(req, website)
 
       // the client will often send empty strings for parameters that it does
       // not want to update. We delete any key/value pair where the value is
@@ -112,7 +112,7 @@ router.delete('/websites/:id', requireToken, (req, res) => {
     .then(handle404)
     .then(website => {
       // throw an error if current user doesn't own `website`
-      requireOwnership(req, website)
+      // requireOwnership(req, website)
       // delete the website ONLY IF the above didn't throw
       website.remove()
     })
