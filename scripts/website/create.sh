@@ -9,7 +9,9 @@ curl "${API}${URL_PATH}" \
   --data '{
     "website": {
       "title": "'"${TITLE}"'",
-      "description": "'"${DESCRIPTION}"'"
+      "description": "'"${DESCRIPTION}"'",
+      "owner": "'"${OWNER}"'"
+
     }
   }'
 
