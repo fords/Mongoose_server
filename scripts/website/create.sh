@@ -11,7 +11,6 @@ curl "${API}${URL_PATH}" \
       "title": "'"${TITLE}"'",
       "description": "'"${DESCRIPTION}"'",
       "owner": "'"${OWNER}"'"
-
     }
   }'
 

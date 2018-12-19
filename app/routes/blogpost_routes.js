@@ -60,9 +60,9 @@ router.get('/blogposts/:id', requireToken, (req, res) => {
 // POST /blogposts
 router.post('/blogposts', requireToken, (req, res) => {
   // set owner of new blogpost to be current user
-  req.body.blogpost.owner = req.user.id
+  req.body.owner = req.user._id
 
-  Blogpost.create(req.body.blogpost)
+  Blogpost.create(req.body)
     // respond to succesful `create` with status 201 and JSON of new "blogpost"
     .then(blogpost => {
       res.status(201).json({ blogpost: blogpost.toObject() })
@@ -78,7 +78,7 @@ router.post('/blogposts', requireToken, (req, res) => {
 router.patch('/blogposts/:id', requireToken, (req, res) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  delete req.body.blogpost.owner
+  delete req.body.owner
 
   Blogpost.findById(req.params.id)
     .then(handle404)
@@ -90,14 +90,14 @@ router.patch('/blogposts/:id', requireToken, (req, res) => {
       // the client will often send empty strings for parameters that it does
       // not want to update. We delete any key/value pair where the value is
       // an empty string before updating
-      Object.keys(req.body.blogpost).forEach(key => {
-        if (req.body.blogpost[key] === '') {
-          delete req.body.blogpost[key]
+      Object.keys(req.body).forEach(key => {
+        if (req.body[key] === '') {
+          delete req.body[key]
         }
       })
 
       // pass the result of Mongoose's `.update` to the next `.then`
-      return blogpost.update(req.body.blogpost)
+      return blogpost.update(req.body)
     })
     // if that succeeded, return 204 and no JSON
     .then(() => res.sendStatus(204))
