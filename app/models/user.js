@@ -15,11 +15,6 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  website: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Website',
-    required: false
-  },
   token: String
 }, {
   timestamps: true,

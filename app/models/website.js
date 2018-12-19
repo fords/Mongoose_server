@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const websiteSchema = new mongoose.Schema({
-  url: {
-    type: String,
-    required: true
-  },
   title: {
     type: String,
     required: true
@@ -14,10 +10,10 @@ const websiteSchema = new mongoose.Schema({
     required: true
   },
 
-  blogpost: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Blogpost',
-    required: true
+    ref: 'User',
+    required: false
   }
 }, {
   timestamps: true
