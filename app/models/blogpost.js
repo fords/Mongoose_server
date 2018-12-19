@@ -4,7 +4,6 @@ const blogpostSchema = new mongoose.Schema({
   time: {
     type: Date,
     default: Date.now
-    // required: false
   },
   title: {
     type: String,
@@ -21,7 +20,7 @@ const blogpostSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: false
   }
 }, {
   timestamps: true

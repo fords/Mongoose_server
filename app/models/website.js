@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const websiteSchema = new mongoose.Schema({
-  url: {
+  companyName: {
     type: String,
     required: true
   },
@@ -17,18 +17,11 @@ const websiteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
-  blogpost: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Blogpost',
+    ref: 'User',
     required: false
   }
-  // ,
-  // owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: true
-  // }
 }, {
   timestamps: true
 })
