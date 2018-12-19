@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const websiteSchema = new mongoose.Schema({
-  url: {
-    type: String,
-    required: true
-  },
   title: {
     type: String,
     required: true
@@ -14,9 +10,13 @@ const websiteSchema = new mongoose.Schema({
     required: true
   },
 
-  blogpost: {
+  backgroundColor: {
+    type: String,
+    required: true
+  },
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Blogpost',
+    ref: 'User',
     required: true
   }
 }, {

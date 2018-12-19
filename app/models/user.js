@@ -1,10 +1,7 @@
+
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-  companyName: {
-    type: String,
-    required: false
-  },
   email: {
     type: String,
     required: true,
@@ -15,11 +12,11 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  website: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Website',
+  companyName: {
+    type: String,
     required: false
   },
+
   token: String
 }, {
   timestamps: true,

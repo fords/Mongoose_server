@@ -7,11 +7,10 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "blogpost": {  
+    "blogpost": {
       "title": "'"${TITLE}"'",
       "img_url": "'"${IMG_URL}"'",
-      "description": "'"${DESCRIPTION}"'",
-      "owner":"'"${OWNER}"'"
+      "description": "'"${DESCRIPTION}"'"
     }
   }'
 

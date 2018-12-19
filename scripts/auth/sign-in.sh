@@ -10,7 +10,8 @@ curl "${API}${URL_PATH}" \
   --data '{
     "credentials": {
       "email": "'"${EMAIL}"'",
-      "password": "'"${PASSWORD}"'"
+      "password": "'"${PASSWORD}"'",
+      "company_name": "'"${COMPANY_NAME}"'"
     }
   }'
 

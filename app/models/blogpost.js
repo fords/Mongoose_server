@@ -1,16 +1,11 @@
 const mongoose = require('mongoose')
 
 const blogpostSchema = new mongoose.Schema({
-  time: {
-    type: Date,
-    default: Date.now,
-    required: false
-  },
   title: {
     type: String,
     required: true
   },
-  img_url: {
+  imgUrl: {
     type: String,
     required: true
   },
@@ -20,7 +15,7 @@ const blogpostSchema = new mongoose.Schema({
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Website',
     required: true
   }
 }, {
