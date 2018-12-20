@@ -30,7 +30,7 @@ const router = express.Router()
 
 // INDEX
 // GET /websites
-router.get('/websites', requireToken, (req, res) => {
+router.get('/websites', (req, res) => {
   Website.find()
     .then(websites => {
       // `websites` will be an array of Mongoose documents
@@ -46,7 +46,7 @@ router.get('/websites', requireToken, (req, res) => {
 
 // SHOW
 // GET /websites/5a7db6c74d55bc51bdf39793
-router.get('/websites/:id', requireToken, (req, res) => {
+router.get('/websites/:id', (req, res) => {
   // req.params.id will be set based on the `:id` in the route
   Website.findById(req.params.id)
     .then(handle404)
@@ -60,9 +60,9 @@ router.get('/websites/:id', requireToken, (req, res) => {
 // POST /websites
 router.post('/websites', requireToken, (req, res) => {
   // set owner of new website to be current user
-  console.log(req)
+  // console.log(req)
   req.body.website.owner = req.user.id
-  console.log(req.body)
+  // console.log(req.body)
 
   Website.create(req.body.website)
     // respond to succesful `create` with status 201 and JSON of new "website"
