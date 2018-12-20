@@ -12,11 +12,6 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
-  companyName: {
-    type: String,
-    required: false
-  },
-
   token: String
 }, {
   timestamps: true,

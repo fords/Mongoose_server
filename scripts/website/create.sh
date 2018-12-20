@@ -8,9 +8,9 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "website": {
+      "companyName": "'"${COMPANYNAME}"'",
       "title": "'"${TITLE}"'",
       "description": "'"${DESCRIPTION}"'",
-      "background_color":"'"${BACKGROUND_COLOR}"'"
     }
   }'
 
