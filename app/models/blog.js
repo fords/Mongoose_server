@@ -1,26 +1,21 @@
 const mongoose = require('mongoose')
 
-const blogpostSchema = new mongoose.Schema({
+const blogSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
   },
-  imgUrl: {
-    type: String,
-    required: true
-  },
-  description: {
+  text: {
     type: String,
     required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Website',
+    ref: 'User',
     required: true
   }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('Blogpost', blogpostSchema)
-// comments and likes future
+module.exports = mongoose.model('Blog', blogSchema)

@@ -1,7 +1,9 @@
-API="http://localhost:4741"
-URL_PATH="/blogposts"
+#!/bin/sh
 
-curl "${API}${URL_PATH}" \
+API="http://localhost:4741"
+URL_PATH="/blogs"
+
+curl "${API}${URL_PATH}/${ID}" \
   --include \
   --request GET \
   --header "Authorization: Bearer ${TOKEN}"

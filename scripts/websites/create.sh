@@ -1,3 +1,5 @@
+#!/bin/bash
+
 API="http://localhost:4741"
 URL_PATH="/websites"
 
@@ -8,9 +10,9 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "website": {
-      "companyName": "'"${COMPANYNAME}"'",
       "title": "'"${TITLE}"'",
-      "description": "'"${DESCRIPTION}"'",
+      "company": "'"${COMPANY}"'",
+      "text": "'"${TEXT}"'"
     }
   }'
 
