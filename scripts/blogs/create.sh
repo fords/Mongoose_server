@@ -1,17 +1,17 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/sign-in"
+URL_PATH="/blogs"
 
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "credentials": {
-      "email": "'"${EMAIL}"'",
-      "password": "'"${PASSWORD}"'",
-      "company_name": "'"${COMPANY_NAME}"'"
+    "blog": {
+      "title": "'"${TITLE}"'",
+      "text": "'"${TEXT}"'"
     }
   }'
 

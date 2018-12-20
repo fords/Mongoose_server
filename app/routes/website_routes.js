@@ -3,8 +3,8 @@ const express = require('express')
 // Passport docs: http://www.passportjs.org/docs/
 const passport = require('passport')
 
-// pull in Mongoose model for examples
-const Example = require('../models/example')
+// pull in Mongoose model for websites
+const Website = require('../models/website')
 
 // we'll use this to intercept any errors that get thrown and send them
 // back to the client with the appropriate status code
@@ -29,43 +29,45 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 // INDEX
-// GET /examples
-router.get('/examples', requireToken, (req, res) => {
-  Example.find()
-    .then(examples => {
-      // `examples` will be an array of Mongoose documents
+// GET /websites
+router.get('/websites', requireToken, (req, res) => {
+  Website.find()
+    .then(websites => {
+      // `websites` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return examples.map(example => example.toObject())
+      return websites.map(website => website.toObject())
     })
-    // respond with status 200 and JSON of the examples
-    .then(examples => res.status(200).json({ examples: examples }))
+    // respond with status 200 and JSON of the websites
+    .then(websites => res.status(200).json({ websites: websites }))
     // if an error occurs, pass it to the handler
     .catch(err => handle(err, res))
 })
 
 // SHOW
-// GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/examples/:id', requireToken, (req, res) => {
+// GET /websites/5a7db6c74d55bc51bdf39793
+router.get('/websites/:id', requireToken, (req, res) => {
   // req.params.id will be set based on the `:id` in the route
-  Example.findById(req.params.id)
+  Website.findById(req.params.id)
     .then(handle404)
-    // if `findById` is succesful, respond with 200 and "example" JSON
-    .then(example => res.status(200).json({ example: example.toObject() }))
+    // if `findById` is succesful, respond with 200 and "website" JSON
+    .then(website => res.status(200).json({ website: website.toObject() }))
     // if an error occurs, pass it to the handler
     .catch(err => handle(err, res))
 })
 
 // CREATE
-// POST /examples
-router.post('/examples', requireToken, (req, res) => {
-  // set owner of new example to be current user
-  req.body.example.owner = req.user.id
+// POST /websites
+router.post('/websites', requireToken, (req, res) => {
+  // set owner of new website to be current user
+  console.log(req)
+  req.body.website.owner = req.user.id
+  console.log(req.body)
 
-  Example.create(req.body.example)
-    // respond to succesful `create` with status 201 and JSON of new "example"
-    .then(example => {
-      res.status(201).json({ example: example.toObject() })
+  Website.create(req.body.website)
+    // respond to succesful `create` with status 201 and JSON of new "website"
+    .then(website => {
+      res.status(201).json({ website: website.toObject() })
     })
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
@@ -74,30 +76,30 @@ router.post('/examples', requireToken, (req, res) => {
 })
 
 // UPDATE
-// PATCH /examples/5a7db6c74d55bc51bdf39793
-router.patch('/examples/:id', requireToken, (req, res) => {
+// PATCH /websites/5a7db6c74d55bc51bdf39793
+router.patch('/websites/:id', requireToken, (req, res) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  delete req.body.example.owner
+  delete req.body.website.owner
 
-  Example.findById(req.params.id)
+  Website.findById(req.params.id)
     .then(handle404)
-    .then(example => {
+    .then(website => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
-      requireOwnership(req, example)
+      requireOwnership(req, website)
 
       // the client will often send empty strings for parameters that it does
       // not want to update. We delete any key/value pair where the value is
       // an empty string before updating
-      Object.keys(req.body.example).forEach(key => {
-        if (req.body.example[key] === '') {
-          delete req.body.example[key]
+      Object.keys(req.body.website).forEach(key => {
+        if (req.body.website[key] === '') {
+          delete req.body.website[key]
         }
       })
 
       // pass the result of Mongoose's `.update` to the next `.then`
-      return example.update(req.body.example)
+      return website.update(req.body.website)
     })
     // if that succeeded, return 204 and no JSON
     .then(() => res.sendStatus(204))
@@ -106,15 +108,15 @@ router.patch('/examples/:id', requireToken, (req, res) => {
 })
 
 // DESTROY
-// DELETE /examples/5a7db6c74d55bc51bdf39793
-router.delete('/examples/:id', requireToken, (req, res) => {
-  Example.findById(req.params.id)
+// DELETE /websites/5a7db6c74d55bc51bdf39793
+router.delete('/websites/:id', requireToken, (req, res) => {
+  Website.findById(req.params.id)
     .then(handle404)
-    .then(example => {
-      // throw an error if current user doesn't own `example`
-      requireOwnership(req, example)
-      // delete the example ONLY IF the above didn't throw
-      example.remove()
+    .then(website => {
+      // throw an error if current user doesn't own `website`
+      requireOwnership(req, website)
+      // delete the website ONLY IF the above didn't throw
+      website.remove()
     })
     // send back 204 and no content if the deletion succeeded
     .then(() => res.sendStatus(204))
