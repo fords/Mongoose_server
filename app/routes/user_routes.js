@@ -18,7 +18,7 @@ const User = require('../models/user')
 // so that a token MUST be passed for that route to be available
 // it will also set `res.user`
 const requireToken = passport.authenticate('bearer', { session: false })
-// console.log('requireToken')
+
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 

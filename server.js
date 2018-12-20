@@ -9,7 +9,7 @@ const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 const websiteRoutes = require('./app/routes/website_routes')
-const blogpostRoutes = require('./app/routes/blogpost_routes')
+const blogRoutes = require('./app/routes/blog_routes')
 
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
@@ -75,7 +75,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(websiteRoutes)
-app.use(blogpostRoutes)
+app.use(blogRoutes)
 // run API on designated port (4741 in this case)
 app.listen(port, () => {
   console.log('listening on port ' + port)

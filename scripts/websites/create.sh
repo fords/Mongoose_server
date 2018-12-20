@@ -1,3 +1,5 @@
+#!/bin/bash
+
 API="http://localhost:4741"
 URL_PATH="/websites"
 
@@ -9,8 +11,8 @@ curl "${API}${URL_PATH}" \
   --data '{
     "website": {
       "title": "'"${TITLE}"'",
-      "description": "'"${DESCRIPTION}"'",
-      "owner": "'"${OWNER}"'"
+      "company": "'"${COMPANY}"'",
+      "text": "'"${TEXT}"'"
     }
   }'
 

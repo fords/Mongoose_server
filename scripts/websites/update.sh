@@ -1,7 +1,7 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/blogposts"
+URL_PATH="/websites"
 
 curl "${API}${URL_PATH}/${ID}" \
   --include \
@@ -9,11 +9,11 @@ curl "${API}${URL_PATH}/${ID}" \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-  "blogpost": {
-    "title": "'"${TITLE}"'",
-    "img_url": "'"${IMG_URL}"'",
-    "description": "'"${DESCRIPTION}"'"
-  }
-}'
+    "website": {
+      "title": "'"${TITLE}"'",
+      "company": "'"${COMPANY}"'",
+      "text": "'"${TEXT}"'"
+    }
+  }'
 
 echo
